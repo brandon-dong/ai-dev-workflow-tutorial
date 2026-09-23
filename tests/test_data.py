@@ -8,7 +8,14 @@ Two kinds of test:
 import pandas as pd
 import pytest
 
-from data import load_sales_data, sales_by_month, total_orders, total_sales
+from data import (
+    load_sales_data,
+    sales_by_category,
+    sales_by_month,
+    sales_by_region,
+    total_orders,
+    total_sales,
+)
 
 HEADER = "date,order_id,product,category,region,quantity,unit_price,total_amount"
 GOOD_ROW = "2024-01-05,ORD-1,Laptop,Electronics,North,1,100.00,100.00"
@@ -162,3 +169,42 @@ def test_real_data_has_12_months(real_sales):
     assert result["sales"].iloc[0] == pytest.approx(7175.17)
     assert result["month"].iloc[-1] == pd.Timestamp("2024-12-01")
     assert result["sales"].iloc[-1] == pytest.approx(15186.34)
+
+
+# --- Sales by category and region ------------------------------------------
+
+
+def test_sales_by_category_is_sorted_largest_first(small_sales):
+    result = sales_by_category(small_sales)
+
+    assert list(result.columns) == ["category", "sales"]
+    assert list(result["category"]) == ["Electronics", "Audio", "Accessories"]
+    assert list(result["sales"]) == [300.0, 70.0, 50.0]
+
+
+def test_sales_by_region_is_sorted_largest_first(small_sales):
+    result = sales_by_region(small_sales)
+
+    assert list(result.columns) == ["region", "sales"]
+    assert list(result["region"]) == ["East", "North", "South"]
+    assert list(result["sales"]) == [200.0, 120.0, 100.0]
+
+
+def test_real_data_categories(real_sales):
+    result = sales_by_category(real_sales)
+
+    assert list(result["category"]) == [
+        "Electronics",
+        "Wearables",
+        "Audio",
+        "Smart Home",
+        "Accessories",
+    ]
+    assert result["sales"].iloc[0] == pytest.approx(42683.67)
+
+
+def test_real_data_regions(real_sales):
+    result = sales_by_region(real_sales)
+
+    assert list(result["region"]) == ["North", "West", "East", "South"]
+    assert result["sales"].iloc[0] == pytest.approx(38857.24)
