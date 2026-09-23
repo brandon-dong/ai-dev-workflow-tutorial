@@ -8,7 +8,7 @@ Two kinds of test:
 import pandas as pd
 import pytest
 
-from data import load_sales_data, total_orders, total_sales
+from data import load_sales_data, sales_by_month, total_orders, total_sales
 
 HEADER = "date,order_id,product,category,region,quantity,unit_price,total_amount"
 GOOD_ROW = "2024-01-05,ORD-1,Laptop,Electronics,North,1,100.00,100.00"
@@ -126,3 +126,39 @@ def test_total_orders_counts_each_order_once(small_sales):
 def test_real_data_kpis(real_sales):
     assert total_sales(real_sales) == pytest.approx(116500.21)
     assert total_orders(real_sales) == 482
+
+
+# --- Sales by month --------------------------------------------------------
+
+
+def test_sales_by_month_totals_each_month(small_sales):
+    result = sales_by_month(small_sales)
+
+    assert list(result.columns) == ["month", "sales"]
+    assert list(result["month"]) == [pd.Timestamp("2024-01-01"), pd.Timestamp("2024-02-01")]
+    assert list(result["sales"]) == [200.0, 220.0]
+
+
+def test_sales_by_month_orders_across_year_boundary():
+    # January 2024 is listed first in the data, but December 2023 comes first in time.
+    df = pd.DataFrame(
+        {
+            "date": pd.to_datetime(["2024-01-10", "2023-12-20"]),
+            "total_amount": [10.0, 30.0],
+        }
+    )
+
+    result = sales_by_month(df)
+
+    assert list(result["month"]) == [pd.Timestamp("2023-12-01"), pd.Timestamp("2024-01-01")]
+    assert list(result["sales"]) == [30.0, 10.0]
+
+
+def test_real_data_has_12_months(real_sales):
+    result = sales_by_month(real_sales)
+
+    assert len(result) == 12
+    assert result["month"].iloc[0] == pd.Timestamp("2024-01-01")
+    assert result["sales"].iloc[0] == pytest.approx(7175.17)
+    assert result["month"].iloc[-1] == pd.Timestamp("2024-12-01")
+    assert result["sales"].iloc[-1] == pytest.approx(15186.34)

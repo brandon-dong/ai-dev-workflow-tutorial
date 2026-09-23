@@ -63,3 +63,14 @@ def total_sales(df):
 def total_orders(df):
     """Number of distinct orders. An order ID on several rows counts once."""
     return int(df["order_id"].nunique())
+
+
+def sales_by_month(df):
+    """Total sales per calendar month, oldest month first.
+
+    Returns a DataFrame with columns: month (first day of the month), sales.
+    """
+    month = df["date"].dt.to_period("M").dt.to_timestamp()
+    result = df.groupby(month)["total_amount"].sum().reset_index()
+    result.columns = ["month", "sales"]
+    return result
