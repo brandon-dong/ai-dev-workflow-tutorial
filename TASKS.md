@@ -12,13 +12,6 @@ A milestone moves to Done only when:
 
 ## To Do
 
-### TASK-1: Environment setup and project initialization
-Set up the Python environment, dependencies, and project skeleton.
-- [ ] `requirements.txt` lists Streamlit, Pandas, and Plotly, and installs cleanly on Python 3.11+
-- [ ] `app.py` exists and `streamlit run app.py` opens a page titled "ShopSmart Sales Dashboard"
-
-Commit:
-
 ### TASK-2: Data loading and basic structure
 Load `data/sales-data.csv` into Pandas with correct column types.
 - [ ] `date` is parsed as a date, and `quantity`, `unit_price`, and `total_amount` are numeric
@@ -66,3 +59,11 @@ Commit:
 ## In Progress
 
 ## Done
+
+### TASK-1: Environment setup and project initialization
+Set up the Python environment, dependencies, and project skeleton.
+- [x] `requirements.txt` lists Streamlit, Pandas, and Plotly, and installs cleanly on Python 3.11+
+- [x] `app.py` exists and `streamlit run app.py` opens a page titled "ShopSmart Sales Dashboard"
+
+Commit: 692670b
+Notes: clean
