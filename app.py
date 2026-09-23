@@ -8,7 +8,7 @@ the charts.
 
 import streamlit as st
 
-from data import load_sales_data
+from data import load_sales_data, total_orders, total_sales
 
 # --- Page setup ------------------------------------------------------------
 st.set_page_config(page_title="ShopSmart Sales Dashboard", layout="wide")
@@ -28,3 +28,9 @@ try:
 except (FileNotFoundError, ValueError) as error:
     st.error(f"Could not load the sales data: {error}")
     st.stop()
+
+
+# --- KPI cards -------------------------------------------------------------
+sales_column, orders_column = st.columns(2)
+sales_column.metric("Total Sales", f"${total_sales(sales):,.0f}")
+orders_column.metric("Total Orders", f"{total_orders(sales):,}")

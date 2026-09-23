@@ -53,3 +53,13 @@ def load_sales_data(path=DEFAULT_DATA_PATH):
             raise ValueError(f"Sales data column {column} has a non-numeric value: {error}") from error
 
     return df
+
+
+def total_sales(df):
+    """Sum of every order amount, in dollars."""
+    return float(df["total_amount"].sum())
+
+
+def total_orders(df):
+    """Number of distinct orders. An order ID on several rows counts once."""
+    return int(df["order_id"].nunique())
