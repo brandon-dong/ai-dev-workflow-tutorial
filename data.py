@@ -44,7 +44,8 @@ def load_sales_data(path=DEFAULT_DATA_PATH):
     try:
         df["date"] = pd.to_datetime(df["date"], format="%Y-%m-%d")
     except ValueError as error:
-        raise ValueError(f"Sales data has a date that isn't YYYY-MM-DD: {error}") from error
+        first_line = str(error).splitlines()[0]
+        raise ValueError(f"Sales data has a date that isn't YYYY-MM-DD: {first_line}") from error
 
     for column in NUMERIC_COLUMNS:
         try:

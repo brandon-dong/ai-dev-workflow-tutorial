@@ -108,10 +108,6 @@ Open [pre-work-setup.md](pre-work-setup.md) and work through it first, then cont
 | [Codex companion](codex-companion.md) | For students on a ChatGPT subscription: what to do differently with OpenAI's Codex at each marked point |
 | [Capstone tools](capstone-tools.md) | Appendix: Granola (meeting notes into Claude Code) and Wispr Flow (dictation), for the capstone, not this tutorial |
 
-## License
-
-This tutorial is provided for educational purposes.
-
 ## Running the dashboard
 
 The dashboard code is `app.py` (the page) and `data.py` (loading and calculations), with tests in `tests/`.
@@ -143,3 +139,7 @@ The dashboard code is `app.py` (the page) and `data.py` (loading and calculation
    ```
 
 Live dashboard: not deployed yet (the URL goes here after deployment).
+
+## License
+
+This tutorial is provided for educational purposes.

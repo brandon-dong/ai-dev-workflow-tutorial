@@ -99,6 +99,16 @@ def test_load_rejects_bad_date(tmp_path):
         load_sales_data(path)
 
 
+def test_bad_date_message_is_one_line(tmp_path):
+    row_with_us_date = "01/05/2024,ORD-1,Laptop,Electronics,North,1,100.00,100.00"
+    path = write_csv(tmp_path, HEADER, row_with_us_date)
+
+    with pytest.raises(ValueError) as error:
+        load_sales_data(path)
+
+    assert "\n" not in str(error.value)
+
+
 def test_load_rejects_non_numeric_amount(tmp_path):
     row_with_dollar_sign = "2024-01-05,ORD-1,Laptop,Electronics,North,1,100.00,$100.00"
     path = write_csv(tmp_path, HEADER, row_with_dollar_sign)
