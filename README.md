@@ -111,3 +111,35 @@ Open [pre-work-setup.md](pre-work-setup.md) and work through it first, then cont
 ## License
 
 This tutorial is provided for educational purposes.
+
+## Running the dashboard
+
+The dashboard code is `app.py` (the page) and `data.py` (loading and calculations), with tests in `tests/`.
+
+1. Create and activate a virtual environment (Python 3.11+):
+
+   ```bash
+   python -m venv venv
+   source venv/bin/activate        # macOS/Linux
+   venv\Scripts\Activate.ps1       # Windows PowerShell
+   ```
+
+2. Install the packages:
+
+   ```bash
+   python -m pip install -r requirements.txt
+   ```
+
+3. Start the dashboard, which opens at http://localhost:8501:
+
+   ```bash
+   streamlit run app.py
+   ```
+
+4. Run the tests:
+
+   ```bash
+   python -m pytest
+   ```
+
+Live dashboard: not deployed yet (the URL goes here after deployment).
