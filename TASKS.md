@@ -12,14 +12,6 @@ A milestone moves to Done only when:
 
 ## To Do
 
-### TASK-6: Testing and refinement
-Check the numbers, performance, and presentation against the PRD acceptance criteria.
-- [ ] Every displayed value matches a manual calculation from the CSV
-- [ ] The dashboard loads in under 5 seconds with no errors or warnings in the terminal or browser
-- [ ] Chart titles and labels are clear and the layout matches the PRD mockup
-
-Commit:
-
 ### TASK-7: Deploy to Streamlit Community Cloud
 Publish the dashboard at a public, shareable URL (NFR-5).
 - [ ] The app is deployed on Streamlit Community Cloud from this repository
@@ -71,3 +63,12 @@ Add side-by-side bar charts for sales by category and by region (FR-3, FR-4).
 
 Commit: 71af508
 Notes: clean
+
+### TASK-6: Testing and refinement
+Check the numbers, performance, and presentation against the PRD acceptance criteria.
+- [x] Every displayed value matches a manual calculation from the CSV
+- [x] The dashboard loads in under 5 seconds with no errors or warnings in the terminal or browser
+- [x] Chart titles and labels are clear and the layout matches the PRD mockup
+
+Commit: 6a9c07e
+Notes: final review found the date error message showed a multi-line pandas hint on the page and the README run section sat after License; both fixed
