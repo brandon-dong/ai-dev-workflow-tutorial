@@ -12,13 +12,6 @@ A milestone moves to Done only when:
 
 ## To Do
 
-### TASK-4: Sales trend chart
-Add a Plotly line chart of sales over time (FR-2).
-- [ ] The chart shows sales by month across the 12-month range, with labeled axes
-- [ ] Hover tooltips show the exact sales value for each point
-
-Commit:
-
 ### TASK-5: Category and region breakdowns
 Add side-by-side bar charts for sales by category and by region (FR-3, FR-4).
 - [ ] The category chart shows all 5 categories sorted highest to lowest, with Electronics on top
@@ -69,3 +62,11 @@ Display Total Sales and Total Orders prominently at the top of the dashboard (FR
 
 Commit: b1c7089
 Notes: clean
+
+### TASK-4: Sales trend chart
+Add a Plotly line chart of sales over time (FR-2).
+- [x] The chart shows sales by month across the 12-month range, with labeled axes
+- [x] Hover tooltips show the exact sales value for each point
+
+Commit: 69051f1
+Notes: design review caught that use_container_width would trigger a deprecation warning; switched to width="stretch"
