@@ -108,6 +108,38 @@ Open [pre-work-setup.md](pre-work-setup.md) and work through it first, then cont
 | [Codex companion](codex-companion.md) | For students on a ChatGPT subscription: what to do differently with OpenAI's Codex at each marked point |
 | [Capstone tools](capstone-tools.md) | Appendix: Granola (meeting notes into Claude Code) and Wispr Flow (dictation), for the capstone, not this tutorial |
 
+## Running the dashboard
+
+The dashboard code is `app.py` (the page) and `data.py` (loading and calculations), with tests in `tests/`.
+
+1. Create and activate a virtual environment (Python 3.11+):
+
+   ```bash
+   python -m venv venv
+   source venv/bin/activate        # macOS/Linux
+   venv\Scripts\Activate.ps1       # Windows PowerShell
+   ```
+
+2. Install the packages:
+
+   ```bash
+   python -m pip install -r requirements.txt
+   ```
+
+3. Start the dashboard, which opens at http://localhost:8501:
+
+   ```bash
+   streamlit run app.py
+   ```
+
+4. Run the tests:
+
+   ```bash
+   python -m pytest
+   ```
+
+Live dashboard: not deployed yet (the URL goes here after deployment).
+
 ## License
 
 This tutorial is provided for educational purposes.

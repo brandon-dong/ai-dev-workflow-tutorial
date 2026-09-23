@@ -1,0 +1,94 @@
+"""Load the ShopSmart sales CSV and calculate the numbers the dashboard shows.
+
+Every calculation takes the sales DataFrame and returns a plain number or a
+small DataFrame. Nothing here uses Streamlit, so pytest can test it directly.
+"""
+
+from pathlib import Path
+
+import pandas as pd
+
+# The CSV sits in the data/ folder next to this file. Building the path from
+# this file's location means loading works whichever folder the app starts in.
+DEFAULT_DATA_PATH = Path(__file__).parent / "data" / "sales-data.csv"
+
+REQUIRED_COLUMNS = [
+    "date",
+    "order_id",
+    "product",
+    "category",
+    "region",
+    "quantity",
+    "unit_price",
+    "total_amount",
+]
+NUMERIC_COLUMNS = ["quantity", "unit_price", "total_amount"]
+
+
+def load_sales_data(path=DEFAULT_DATA_PATH):
+    """Read the sales CSV, check it, and convert dates and numbers.
+
+    Raises ValueError, naming the problem column, if a column is missing,
+    a cell is blank, a date isn't YYYY-MM-DD, or a number isn't numeric.
+    """
+    df = pd.read_csv(path)
+
+    missing = [column for column in REQUIRED_COLUMNS if column not in df.columns]
+    if missing:
+        raise ValueError(f"Sales data is missing columns: {', '.join(missing)}")
+
+    blank = [column for column in REQUIRED_COLUMNS if df[column].isna().any()]
+    if blank:
+        raise ValueError(f"Sales data has blank values in: {', '.join(blank)}")
+
+    try:
+        df["date"] = pd.to_datetime(df["date"], format="%Y-%m-%d")
+    except ValueError as error:
+        first_line = str(error).splitlines()[0]
+        raise ValueError(f"Sales data has a date that isn't YYYY-MM-DD: {first_line}") from error
+
+    for column in NUMERIC_COLUMNS:
+        try:
+            df[column] = pd.to_numeric(df[column])
+        except ValueError as error:
+            raise ValueError(f"Sales data column {column} has a non-numeric value: {error}") from error
+
+    return df
+
+
+def total_sales(df):
+    """Sum of every order amount, in dollars."""
+    return float(df["total_amount"].sum())
+
+
+def total_orders(df):
+    """Number of distinct orders. An order ID on several rows counts once."""
+    return int(df["order_id"].nunique())
+
+
+def sales_by_month(df):
+    """Total sales per calendar month, oldest month first.
+
+    Returns a DataFrame with columns: month (first day of the month), sales.
+    """
+    month = df["date"].dt.to_period("M").dt.to_timestamp()
+    result = df.groupby(month)["total_amount"].sum().reset_index()
+    result.columns = ["month", "sales"]
+    return result
+
+
+def _sales_by(df, column):
+    """Total sales for each value in `column`, largest first."""
+    result = df.groupby(column)["total_amount"].sum().reset_index()
+    result.columns = [column, "sales"]
+    return result.sort_values("sales", ascending=False, ignore_index=True)
+
+
+def sales_by_category(df):
+    """Total sales per product category, largest first."""
+    return _sales_by(df, "category")
+
+
+def sales_by_region(df):
+    """Total sales per region, largest first."""
+    return _sales_by(df, "region")
