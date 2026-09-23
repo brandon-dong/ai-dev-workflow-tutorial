@@ -12,14 +12,6 @@ A milestone moves to Done only when:
 
 ## To Do
 
-### TASK-5: Category and region breakdowns
-Add side-by-side bar charts for sales by category and by region (FR-3, FR-4).
-- [ ] The category chart shows all 5 categories sorted highest to lowest, with Electronics on top
-- [ ] The region chart shows all 4 regions sorted highest to lowest
-- [ ] Both charts have hover tooltips with exact values
-
-Commit:
-
 ### TASK-6: Testing and refinement
 Check the numbers, performance, and presentation against the PRD acceptance criteria.
 - [ ] Every displayed value matches a manual calculation from the CSV
@@ -70,3 +62,12 @@ Add a Plotly line chart of sales over time (FR-2).
 
 Commit: 69051f1
 Notes: design review caught that use_container_width would trigger a deprecation warning; switched to width="stretch"
+
+### TASK-5: Category and region breakdowns
+Add side-by-side bar charts for sales by category and by region (FR-3, FR-4).
+- [x] The category chart shows all 5 categories sorted highest to lowest, with Electronics on top
+- [x] The region chart shows all 4 regions sorted highest to lowest
+- [x] Both charts have hover tooltips with exact values
+
+Commit: 71af508
+Notes: clean
