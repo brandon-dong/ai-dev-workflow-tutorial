@@ -12,13 +12,6 @@ A milestone moves to Done only when:
 
 ## To Do
 
-### TASK-7: Deploy to Streamlit Community Cloud
-Publish the dashboard at a public, shareable URL (NFR-5).
-- [ ] The app is deployed on Streamlit Community Cloud from this repository
-- [ ] The public URL loads the full dashboard in a browser without signing in, and the URL is added to the README
-
-Commit:
-
 ## In Progress
 
 ## Done
@@ -72,3 +65,12 @@ Check the numbers, performance, and presentation against the PRD acceptance crit
 
 Commit: 6a9c07e
 Notes: final review found the date error message showed a multi-line pandas hint on the page and the README run section sat after License; both fixed
+
+### TASK-7: Deploy to Streamlit Community Cloud
+Publish the dashboard at a public, shareable URL (NFR-5).
+- [x] The app is deployed on Streamlit Community Cloud from this repository
+- [x] The public URL loads the full dashboard in a browser without signing in, and the URL is added to the README
+
+Commit: 143b4c1
+Live URL: https://sales-dashboard-brandondong.streamlit.app/
+Notes: clean; deployed from main to Streamlit Community Cloud

@@ -1,5 +1,7 @@
 # AI-Assisted Development Workflow Tutorial
 
+**Live dashboard:** https://sales-dashboard-brandondong.streamlit.app/
+
 This tutorial teaches you a professional development workflow by having you build and deploy a real project: an e-commerce sales dashboard.
 
 You'll work through it in two parts:
@@ -138,7 +140,7 @@ The dashboard code is `app.py` (the page) and `data.py` (loading and calculation
    python -m pytest
    ```
 
-Live dashboard: not deployed yet (the URL goes here after deployment).
+Live dashboard: https://sales-dashboard-brandondong.streamlit.app/
 
 ## License
 
