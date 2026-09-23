@@ -12,13 +12,6 @@ A milestone moves to Done only when:
 
 ## To Do
 
-### TASK-3: KPI cards
-Display Total Sales and Total Orders prominently at the top of the dashboard (FR-1).
-- [ ] Total Sales shows as currency (`$X,XXX,XXX`) and matches the CSV sum (~$116,500)
-- [ ] Total Orders shows 482, formatted with thousands separators
-
-Commit:
-
 ### TASK-4: Sales trend chart
 Add a Plotly line chart of sales over time (FR-2).
 - [ ] The chart shows sales by month across the 12-month range, with labeled axes
@@ -67,4 +60,12 @@ Load `data/sales-data.csv` into Pandas with correct column types.
 - [x] All 482 records load, and the app shows a clear error if the file is missing or its columns don't match
 
 Commit: f72037b
+Notes: clean
+
+### TASK-3: KPI cards
+Display Total Sales and Total Orders prominently at the top of the dashboard (FR-1).
+- [x] Total Sales shows as currency (`$X,XXX,XXX`) and matches the CSV sum (~$116,500)
+- [x] Total Orders shows 482, formatted with thousands separators
+
+Commit: b1c7089
 Notes: clean
