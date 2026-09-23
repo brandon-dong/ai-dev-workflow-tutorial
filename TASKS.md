@@ -12,13 +12,6 @@ A milestone moves to Done only when:
 
 ## To Do
 
-### TASK-2: Data loading and basic structure
-Load `data/sales-data.csv` into Pandas with correct column types.
-- [ ] `date` is parsed as a date, and `quantity`, `unit_price`, and `total_amount` are numeric
-- [ ] All 482 records load, and the app shows a clear error if the file is missing or its columns don't match
-
-Commit:
-
 ### TASK-3: KPI cards
 Display Total Sales and Total Orders prominently at the top of the dashboard (FR-1).
 - [ ] Total Sales shows as currency (`$X,XXX,XXX`) and matches the CSV sum (~$116,500)
@@ -66,4 +59,12 @@ Set up the Python environment, dependencies, and project skeleton.
 - [x] `app.py` exists and `streamlit run app.py` opens a page titled "ShopSmart Sales Dashboard"
 
 Commit: 692670b
+Notes: clean
+
+### TASK-2: Data loading and basic structure
+Load `data/sales-data.csv` into Pandas with correct column types.
+- [x] `date` is parsed as a date, and `quantity`, `unit_price`, and `total_amount` are numeric
+- [x] All 482 records load, and the app shows a clear error if the file is missing or its columns don't match
+
+Commit: f72037b
 Notes: clean
